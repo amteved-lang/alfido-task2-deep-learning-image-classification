@@ -1,46 +1,100 @@
-# Task 2: Deep Learning Image Classification
-## Alfido Tech AI Internship
+# **Deep Learning Image Classification using CNN**
 
-### Project
-Cats vs Dogs Image Classification using TensorFlow and Transfer Learning
+This repository contains **Task 2** of the **Alfido Tech AI Internship**. The project implements a deep learning image classification model in **Google Colab** using **TensorFlow/Keras** to classify **cat** and **dog** images from the **CIFAR-10** dataset.
 
-### Notebook Name
-Task2_DeepLearning_Image_Classification_CatsVsDogs
+## **Project Objective**
+The main objective of this project is to build, train, and evaluate a small deep learning model for **binary image classification**. The workflow includes dataset filtering, preprocessing, data augmentation, CNN model training, performance evaluation, and saving the trained model for inference.
 
-### Requirements
-- Python 3.x
-- TensorFlow
-- TensorFlow Datasets
-- Matplotlib
-- NumPy
+## **Dataset**
+The project uses the **CIFAR-10** dataset loaded directly from TensorFlow using `tf.keras.datasets.cifar10.load_data()`. From the 10 available classes, only the **cat** and **dog** classes are selected to create a binary image classification problem.
 
-### Run in Google Colab
-1. Open Google Colab
-2. Create a new notebook
-3. Copy the code from `task2_google_colab_code.py`
-4. Run all cells in sequence
+## **Technologies Used**
+- **Python**
+- **TensorFlow / Keras**
+- **NumPy**
+- **Matplotlib**
+- **Seaborn**
+- **Scikit-learn**
+- **Google Colab**
 
-### What the code does
-- Loads cats_vs_dogs dataset from TensorFlow Datasets
-- Applies image resizing and normalization
-- Uses data augmentation
-- Builds an image classifier with MobileNetV2 transfer learning
-- Trains and validates the model
-- Plots training curves
-- Evaluates on test data
-- Saves the trained model
-- Runs inference on sample images
+## **Project Workflow**
+1. **Load** the CIFAR-10 dataset.
+2. **Filter** only cat and dog images.
+3. **Normalize** the image pixel values.
+4. **Create** training, validation, and testing splits.
+5. **Apply** data augmentation techniques such as random flip, rotation, and zoom.
+6. **Build** a Convolutional Neural Network (CNN).
+7. **Train** the model and validate performance.
+8. **Evaluate** using test accuracy, classification report, and confusion matrix.
+9. **Save** the trained model as a `.keras` file for future inference.
 
-### Saved Model
-The trained model is saved as:
-`/content/task2_cats_dogs_mobilenetv2.keras`
+## **Model Architecture**
+The CNN model consists of:
+- **Input layer**
+- **Data augmentation layer**
+- **Convolutional layers** with ReLU activation
+- **MaxPooling layers**
+- **Flatten layer**
+- **Dense hidden layer**
+- **Dropout layer**
+- **Output layer** with sigmoid activation for binary classification
 
-### Inference
-The notebook includes a section that loads the saved model and predicts labels for sample test images.
+## **Results**
+The notebook generates the following results:
+- **Training accuracy** and **validation accuracy** curves
+- **Training loss** and **validation loss** curves
+- **Test accuracy** and **test loss**
+- **Classification report**
+- **Confusion matrix**
+- **Sample predictions** on test images
 
-### Suggested Files for Submission
-- task2 notebook (.ipynb)
-- task2 report (.pdf/.docx)
-- saved model file (.keras)
-- screenshots of training curves and predictions
-- README.md
+## **Package Requirements**
+Install the required packages using:
+
+```python
+!pip install tensorflow matplotlib numpy seaborn scikit-learn
+```
+
+## **How to Run**
+1. Open **Google Colab**.
+2. Create a **new notebook**.
+3. Copy the provided **Task 2 code** into the notebook.
+4. Run **all cells** from top to bottom.
+5. Wait for the **training process** to finish.
+6. Review the generated **plots, metrics, and predictions**.
+
+## **Saved Model**
+The trained model is saved at:
+
+```python
+/content/task2_simple_cnn_cats_dogs.keras
+```
+
+To load the saved model again:
+
+```python
+loaded_model = tf.keras.models.load_model('/content/task2_simple_cnn_cats_dogs.keras')
+```
+
+## **Inference**
+Inference is performed by predicting on the test dataset using the trained model. The output probability is converted into a binary class label:
+
+```python
+y_pred_probs = model.predict(x_test, verbose=0)
+y_pred = (y_pred_probs > 0.5).astype(int).flatten()
+```
+
+If the predicted value is greater than **0.5**, the image is classified as **dog**; otherwise, it is classified as **cat**.
+
+## **Repository Contents**
+- **Task2_DeepLearning_Image_Classification_CNN_CatsVsDogs.ipynb**
+- **README.md**
+- **task2_report.md**
+- **Saved model file** (`.keras`)
+- **Output screenshots**
+
+## **Internship Context**
+This project was completed as part of the **Alfido Tech AI Internship**.
+
+## **Conclusion**
+This project demonstrates a complete deep learning image classification workflow in **Google Colab**, including preprocessing, augmentation, model training, evaluation, model saving, and inference. It helped strengthen practical understanding of **CNN-based image classification** using **TensorFlow**.
